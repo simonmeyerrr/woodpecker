@@ -56,6 +56,10 @@
         "name": "Variable name",
         "value": "Variable value"
       },
+      "message": {
+        "title": "Message",
+        "desc": "This message is added to the pipeline's message as additional information."
+      },
       "show_pipelines": "Show pipelines",
       "no_manual_workflows": "No matching workflows found. Make sure at least one workflow runs on the manual event.",
       "trigger_error": "Could not trigger the manual pipeline."
@@ -236,7 +240,6 @@
       "no_logs": "No logs",
       "pipeline": "Pipeline #{pipelineId}",
       "log_title": "Step Logs",
-      "log_download_error": "An error occurred while downloading the log file",
       "log_delete_confirm": "Do you really want to delete the step logs?",
       "log_delete_error": "An error occurred when deleting the step logs",
       "actions": {

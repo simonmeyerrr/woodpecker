@@ -125,6 +125,7 @@ func (p Pipeline) IsPullRequest() bool {
 }
 
 type PipelineOptions struct {
+	Message   string            `json:"message"`
 	Branch    string            `json:"branch,omitempty"`
 	Tag       string            `json:"tag,omitempty"`
 	SHA       string            `json:"sha,omitempty"`

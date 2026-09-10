@@ -152,7 +152,7 @@ func TestTagsFetchesSinglePage(t *testing.T) {
 	tags, err := c.Tags(t.Context(), &model.User{AccessToken: "token"}, &model.Repo{
 		Owner: "PRJ",
 		Name:  "repo",
-	}, &model.ListOptions{All: true, Page: 1, PerPage: 25})
+	}, &model.ListOptions{Page: 1, PerPage: 25})
 
 	require.NoError(t, err)
 	assert.Equal(t, []string{"v1.0.0"}, tags)

@@ -2,9 +2,16 @@
   <Panel v-if="!loading">
     <form @submit.prevent="triggerManualPipeline">
       <span class="text-wp-text-100 text-xl">{{ $t('repo.manual_pipeline.title') }}</span>
+
+      <InputField v-slot="{ id }" :label="$t('repo.manual_pipeline.message.title')">
+        <span class="text-wp-text-alt-100 mb-2 text-sm">{{ $t('repo.manual_pipeline.message.desc') }}</span>
+        <TextField :id="id" v-model="message" :placeholder="$t('repo.manual_pipeline.message.title')" />
+      </InputField>
+
       <InputField :label="$t('repo.manual_pipeline.select_source')">
         <RadioField v-model="mode" :options="sourceOptions" />
       </InputField>
+
       <InputField v-if="mode === 'branch'" v-slot="{ id }" :label="$t('repo.manual_pipeline.select_branch')">
         <ComboboxField
           :id="id"
@@ -27,6 +34,7 @@
         <TextField :id="id" v-model="sha" :placeholder="$t('repo.manual_pipeline.enter_commit_placeholder')" />
       </InputField>
       <span class="text-wp-text-alt-100 mb-2 text-sm">{{ $t('repo.manual_pipeline.event_note') }}</span>
+
       <InputField v-slot="{ id }" :label="$t('repo.manual_pipeline.variables.title')">
         <span class="text-wp-text-alt-100 mb-2 text-sm">{{ $t('repo.manual_pipeline.variables.desc') }}</span>
         <KeyValueEditor
@@ -38,6 +46,7 @@
           @update:is-valid="isVariablesValid = $event"
         />
       </InputField>
+
       <Button type="submit" :text="$t('repo.manual_pipeline.trigger')" :disabled="!isFormValid" />
     </form>
   </Panel>
@@ -85,6 +94,7 @@ const router = useRouter();
 type SourceMode = 'branch' | 'tag' | 'commit';
 
 const mode = ref<SourceMode>('branch');
+const message = ref('');
 const branch = ref(repo.value.default_branch);
 const tag = ref('');
 const sha = ref('');
@@ -114,7 +124,7 @@ const isFormValid = computed(() => {
 });
 
 const pipelineOptions = computed(() => {
-  const base = { variables: variables.value };
+  const base = { message: message.value, variables: variables.value };
   if (mode.value === 'branch') {
     return { ...base, branch: branch.value };
   }

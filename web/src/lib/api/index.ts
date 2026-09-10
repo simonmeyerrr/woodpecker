@@ -13,7 +13,7 @@ import type {
   PullRequest,
   QueueInfo,
   Registry,
-	Repo,
+  Repo,
   RepoPermissions,
   RepoSettings,
   Secret,
@@ -28,6 +28,7 @@ interface RepoListOptions {
 
 // PipelineOptions is the data for creating a new pipeline
 interface PipelineOptions {
+  message?: string;
   branch?: string;
   tag?: string;
   sha?: string;

@@ -154,7 +154,6 @@ func TestBitbucket(t *testing.T) {
 	assert.Equal(t, "https://bitbucket.org/test_name/repo_name/commits/commit-sha", commit.ForgeURL)
 
 	listOpts := model.ListOptions{
-		All:     false,
 		Page:    1,
 		PerPage: 10,
 	}
